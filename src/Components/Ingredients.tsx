@@ -9,18 +9,26 @@ const Ingredients = (id: any) => {
    // console.log('id>>', `www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id.id}`) ;
 
 
-    const [ingredients, setIngredients] = useState<string[]>([]);
+    const [ingredient1, setIngredient1] = useState();
+    const [ingredient2, setIngredient2] = useState();
+    const [ingredient3, setIngredient3] = useState();
+    const [ingredient4, setIngredient4] = useState();
 
-    async function fetchIngredients(id: {id: string }) { 
-        
+
+
+    async function fetchIngredients(id: {id: string }) {
+
             const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id.id}`, {});
-          
-            console.log(ingredients);
-            setIngredients( [...ingredients, response.data.drinks[0].strIngredient1 ] ); 
-                
-               
-          
-       
+
+
+            setIngredient1( response.data.drinks[0].strIngredient1 );
+            setIngredient2( response.data.drinks[0].strIngredient2 );
+            setIngredient3( response.data.drinks[0].strIngredient3 );
+            setIngredient4( response.data.drinks[0].strIngredient4 );
+
+
+
+
 
     }
 
@@ -33,7 +41,13 @@ return (
     <>
     <Container>
         <Row>
-        <Col>{ingredients}</Col>
+        <Col>{ingredient1}</Col>
+        </Row>
+        <Row>
+        <Col>{ingredient2}</Col>
+        </Row>
+        <Row>
+        <Col>....</Col>
         </Row>
     </Container>
     </>
